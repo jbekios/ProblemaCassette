@@ -32,6 +32,11 @@ struct nodo{
 
 typedef nodo Nodo;
 
+/**
+ * Clase controlador: ProblemaCassette.
+ *
+ * Resuelve el problema de asignar canciones a un cassette de 30 minutos.
+ */
 class ProblemaCassette{
 public:
 

@@ -4,15 +4,16 @@
 
 #include "ProblemaCassette.hpp"
 
-ProblemaCassette::ProblemaCassette(int const universoCanciones){
-    /**
-      Constructor: Se construye un listado de canciones con
-      tiempos generados al azar. El número de canciones viene
-      determinado por el parámetro universoCanciones.
+/**
+  Constructor: Se construye un listado de canciones con
+  tiempos generados al azar. El número de canciones viene
+  determinado por el parámetro universoCanciones.
 
-      @param universoCanciones Cantidad de caciones generadas para resolver el
-      problema.
-    */
+  @param universoCanciones Cantidad de caciones generadas para resolver el
+  problema.
+*/
+ProblemaCassette::ProblemaCassette(int const universoCanciones){
+
     numeroTotalMisCanciones = universoCanciones;
     // Semilla para generar números pseudoaleatorios
     srand(0);
@@ -26,7 +27,13 @@ ProblemaCassette::ProblemaCassette(int const universoCanciones){
 
 }
 
+/**
+ * Resuelve el problema de asignación de canciones utilizando una pila (stack).
+ *
+ * @return (Nodo) retorna mejor solución encontrada como una estructura de tipo nodo.
+ */
 Nodo ProblemaCassette::resolver(void){
+
     while(!pila.empty()){
         Nodo candidato = pila.top();
         pila.pop();
@@ -53,10 +60,21 @@ Nodo ProblemaCassette::resolver(void){
     return mejorCandidato;
 }
 
+/**
+ * Retorna el listado de canciones totales (universo de canciones).
+ *
+ * @return (vector) retorna un vector de tipo nodo con todas las canciones que tengo.
+ */
 vector<int> ProblemaCassette::getMisCanciones(void){
     return misCanciones;
 }
 
+/**
+ * Inicializa el mejor candidato y llama un método para llenar la pila.
+ *
+ * @param canciones (vector) listado de todas las canciones, el vector contiene el número de
+ * minutos por canción y el indice identifica el número de la canción.
+ */
 void ProblemaCassette::configurar(vector<int> canciones){
     //Inicializo mejorCandidado con el peor caso
     mejorCandidato.idCancion = -1;
@@ -66,6 +84,12 @@ void ProblemaCassette::configurar(vector<int> canciones){
     llenarPila(canciones);
 }
 
+/**
+ * Convierto las canciones a nodos y lleno la pila con todas las canciones que tengo.
+ *
+ * @param canciones (vector) listado de todas las canciones, el vector contiene el número de
+ * minutos por canción y el indice identifica el número de la canción.
+ */
 void ProblemaCassette::llenarPila(vector<int> canciones){
     // Creo nodos estados y los agrego a la pila
     for(int i=canciones.size()-1; i >= 0; i--){
@@ -76,6 +100,14 @@ void ProblemaCassette::llenarPila(vector<int> canciones){
     }
 }
 
+/**
+ * Genera futuros sucesores del nodo actual, es decir, por cada Nodo n pasado por parámetro genera
+ * una lista de sucesores que incluyen la canción n más otra canción para probar diferentes
+ * combinaciones.
+ *
+ * @param n (Nodo) nodo padre con un grupo de canciones seleccionadas
+ * @return (queue) retorna una cola con nuevos nodos que incluyen la canción n, más una nueva canción.
+ */
 queue<Nodo> ProblemaCassette:: generarListaCandidatos(Nodo n){
     queue<Nodo> listaCandidatos;
     for(int i=n.idCancion+1; i < numeroTotalMisCanciones; i++){
