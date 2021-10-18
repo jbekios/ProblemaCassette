@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/test01.dir/main.cpp.o CMakeFiles/test01.dir/ProblemaCassette.cpp.o -o test01 

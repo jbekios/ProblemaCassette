@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jbekios/CLionProjects/test01/ProblemaCassette.cpp
+ProblemaCassette.hpp
+/home/jbekios/CLionProjects/test01/ProblemaCassette.hpp
+
+/home/jbekios/CLionProjects/test01/ProblemaCassette.hpp
+iostream
+-
+stack
+-
+queue
+-
+array
+-
+vector
+-
+iterator
+-
+cstdio
+-
+cstdlib
+-
+
